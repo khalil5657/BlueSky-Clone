@@ -1,0 +1,139 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id String @id @default(uuid())
+  username String @unique 
+  password String
+  posts Post[]
+  comments Comment[]
+  img Image?
+  bannerimg Banner?
+  following String[]
+  followers String[]
+  // requestssent String[]
+  // requestsreceived String[]
+  frommessages Message[] @relation("from")
+  tomessages Message[] @relation("to")
+  fromnotifications Notification[] @relation("from")
+  tonotifications Notification[] @relation("to")
+  bio String?
+  lastseennotification LastSeenNotification?
+}
+
+model Post {
+  id String @id @default(uuid())
+  writer User @relation(fields: [writerid], references: [id])  
+  writerid String
+  content String
+  posteddate DateTime @default(now())
+  comments Comment[]
+  likes String[]
+  retweets Json[]
+  img PostImages[]
+  quotespostid String?
+  quotespost   Post?   @relation("quotespostquotedby", fields: [quotespostid], references: [id])
+  quotedby  Post[]  @relation("quotespostquotedby")
+}
+
+model Comment {
+  id String @id @default(uuid())
+  content String
+  post Post @relation(fields: [postid], references: [id])
+  postid String
+  writer User @relation(fields: [writerid], references: [id])  
+  writerid String
+  img CommentImage?
+  repliedtoid String?
+  repliedto   Comment?   @relation("repliedtoreplies", fields: [repliedtoid], references: [id])
+  replies  Comment[]  @relation("repliedtoreplies")
+  commenteddate DateTime @default(now())
+}
+
+model Image {
+  id String @id @default(uuid())
+  name String
+  url String 
+  user User @relation(fields: [userid], references: [id])
+  userid String @unique
+  
+}
+
+model CommentImage {
+  id String @id @default(uuid())
+  name String
+  url String 
+  comment Comment @relation(fields: [commentid], references: [id])
+  commentid String @unique
+}
+
+model MessageImage {
+  id String @id @default(uuid())
+  name String
+  url String 
+  message Message @relation(fields: [messageid], references: [id])
+  messageid String @unique
+}
+
+model Banner {
+  id String @id @default(uuid())
+  name String
+  url String 
+  user User @relation(fields: [userid], references: [id])
+  userid String @unique
+}
+
+model PostImages {
+  id String @id @default(uuid())
+  name String
+  url String 
+  post Post @relation(fields: [postid], references: [id])
+  postid String 
+}
+
+model Message {
+  id String @id @default(uuid())
+  content String
+  from User @relation("from", fields: [fromid], references: [id])
+  fromid String
+  to User @relation("to", fields: [toid], references: [id])  
+  toid String
+  sentdate DateTime @default(now())
+  img MessageImage?
+}
+
+model LastSeenMessages {
+  id String @id @default(uuid())
+  fromid String
+  toid String
+  lastseenmessageid String?
+}
+
+model Notification{
+    id String @id @default(uuid())
+    content String
+    from User @relation("from", fields: [fromid], references: [id])
+    fromid String
+    to User @relation("to", fields: [toid], references: [id])  
+    toid String
+}
+
+model LastSeenNotification {
+    id String @id @default(uuid())
+    user User @relation(fields: [userid], references: [id])
+    userid String @unique
+    lastseennotificationid String?
+}
