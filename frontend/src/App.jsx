@@ -36,6 +36,7 @@ function RootLayout(){
       (
         async () =>{
             const response =  await fetch("https://bluesky-clone.onrender.com/user",{
+                method:"GET",
                 headers:{"Content-Type":"application/json"},
                 credentials:"include"
         })
