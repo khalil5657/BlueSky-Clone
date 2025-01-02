@@ -23,7 +23,7 @@ function QuotePost(){
     async function post(e) {
         e.preventDefault()
 
-        const rawPost = await fetch(`http://localhost:3003/quotepost`, {
+        const rawPost = await fetch(`https://bluesky-clone.onrender.com/quotepost`, {
             method:'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -39,7 +39,7 @@ function QuotePost(){
             const formData = new FormData();
             formData.append('image', theFile);
             console.log(formData)
-            const raw = await fetch(`http://localhost:3003/addpostfile/`+post.id, {
+            const raw = await fetch(`https://bluesky-clone.onrender.com/addpostfile/`+post.id, {
             method: 'POST',
             body:formData
         })
@@ -50,7 +50,7 @@ function QuotePost(){
             const formData = new FormData();
             formData.append('image', theFile);
             console.log(formData)
-            const raw = await fetch(`http://localhost:3003/addpostfile/`+post.id, {
+            const raw = await fetch(`https://bluesky-clone.onrender.com/addpostfile/`+post.id, {
             method: 'POST',
             body:formData
         })
@@ -61,7 +61,7 @@ function QuotePost(){
             const formData = new FormData();
             formData.append('image', theFile);
             console.log(formData)
-            const raw = await fetch(`http://localhost:3003/addpostfile/`+post.id, {
+            const raw = await fetch(`https://bluesky-clone.onrender.com/addpostfile/`+post.id, {
             method: 'POST',
             body:formData
         })
@@ -72,7 +72,7 @@ function QuotePost(){
             const formData = new FormData();
             formData.append('image', theFile);
             console.log(formData)
-            const raw = await fetch(`http://localhost:3003/addpostfile/`+post.id, {
+            const raw = await fetch(`https://bluesky-clone.onrender.com/addpostfile/`+post.id, {
             method: 'POST',
             body:formData
         })

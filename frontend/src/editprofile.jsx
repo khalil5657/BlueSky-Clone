@@ -12,7 +12,7 @@ function EditProfile(){
     async function postIt(e) {
         e.preventDefault()
         if (bioContent){
-            await fetch("http://localhost:3003/editprofile", {
+            await fetch("https://bluesky-clone.onrender.com/editprofile", {
                 method:"POST",
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -26,7 +26,7 @@ function EditProfile(){
             const formData = new FormData();
             formData.append('image', theFile);
             console.log(formData)
-            const raw = await fetch(`http://localhost:3003/editprofilefile/`+user.id+"/banner", {
+            const raw = await fetch(`https://bluesky-clone.onrender.com/editprofilefile/`+user.id+"/banner", {
                 method: 'POST',
                 body:formData
                 })
@@ -37,7 +37,7 @@ function EditProfile(){
             const formData = new FormData();
             formData.append('image', theFile);
             console.log(formData)
-            const raw = await fetch(`http://localhost:3003/editprofilefile/`+user.id+"/avatar", {
+            const raw = await fetch(`https://bluesky-clone.onrender.com/editprofilefile/`+user.id+"/avatar", {
                 method: 'POST',
                 body:formData
                 })
