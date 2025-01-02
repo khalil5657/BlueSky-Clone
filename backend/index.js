@@ -26,7 +26,6 @@ app.use(cors({
     credentials: true
 }))
 
-console.log('hahya', process.env.P)
 app.post("/signup", async (req, res)=>{
   const { username, password } = req.body
   try{
@@ -124,6 +123,7 @@ app.get("/user", async(req, res)=>{
     try{
         const cookie = req.cookies['jwt']
         const claims = jwt.verify(cookie, "secret")
+        console.log(claims, 'pdko')
         if (!claims){
             return res.status(404).send({message:"unauthenticated"})
         }
@@ -139,7 +139,7 @@ app.get("/user", async(req, res)=>{
         res.send(user)
 
     }catch{
-    return res.status(404).send({message:"unauthenticated"})
+    return res.status(404).send({message:"something went wrong"})
     }
 })
 
