@@ -26,7 +26,7 @@ app.use(cors({
     credentials: true
 }))
 
-
+console.log(process.env.CLOUD_NAME)
 app.post("/signup", async (req, res)=>{
   const { username, password } = req.body
   try{
