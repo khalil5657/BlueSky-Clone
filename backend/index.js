@@ -23,7 +23,8 @@ const multer  = require('multer')
 const upload = multer({ dest: 'uploads/' })
 
 app.use(cors({
-    origin: "https://bluesky-clone-front.onrender.com",
+    // origin: "https://bluesky-clone-front.onrender.com",
+    origin:"http://localhost:5137",
     methods : ["PUT", "DELETE", "POST", "GET"],
     credentials: true
 }))
