@@ -13,7 +13,7 @@ function Settings(){
         )()
     }, [])
     async function logOut() {
-        await fetch(`https://bluesky-clone.onrender.com/logout`, {
+        await fetch(`http://localhost:3003/logout`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include',

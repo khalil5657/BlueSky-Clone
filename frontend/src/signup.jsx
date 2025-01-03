@@ -43,7 +43,7 @@ function SignUp(){
     async function signUp(e){
         e.preventDefault()
 
-        const res = await fetch(`https://bluesky-clone.onrender.com/signup`, {
+        const res = await fetch(`http://localhost:3003/signup`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'
@@ -64,7 +64,7 @@ function SignUp(){
             const formData = new FormData();
             formData.append('image', theFile);
             console.log(formData)
-            const raw = await fetch(`https://bluesky-clone.onrender.com/addprofileimage/`+data.id, {
+            const raw = await fetch(`http://localhost:3003/addprofileimage/`+data.id, {
             method: 'POST',
             body:formData
         })
@@ -74,7 +74,7 @@ function SignUp(){
             const formData = new FormData();
             formData.append('image', theFile);///////
             console.log(formData)
-            const raw = await fetch(`https://bluesky-clone.onrender.com/editprofilefile/`+data.id+"/banner", {
+            const raw = await fetch(`http://localhost:3003/editprofilefile/`+data.id+"/banner", {
             method: 'POST',
             body:formData
         })

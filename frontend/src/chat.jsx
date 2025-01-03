@@ -18,7 +18,7 @@ function Chat(){
                 return navigate("/")
             }
             
-                let rawUsers = await fetch("https://bluesky-clone.onrender.com/chatusers/"+user.id, {
+                let rawUsers = await fetch("http://localhost:3003/chatusers/"+user.id, {
                     method:"GET",
                     headers: { 'Content-Type': 'application/json' },
                 })
@@ -26,7 +26,7 @@ function Chat(){
                 setChatUsers(users)
                 let lista = []
                 for (let theuser of users){
-                    let lastMessage = await fetch("https://bluesky-clone.onrender.com/lastmessage", {
+                    let lastMessage = await fetch("http://localhost:3003/lastmessage", {
                         method:"POST",
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
@@ -36,7 +36,7 @@ function Chat(){
                     })
                     lastMessage = await lastMessage.json()
 
-                let lastseenmessagemodel = await fetch("https://bluesky-clone.onrender.com/getlastseen", {
+                let lastseenmessagemodel = await fetch("http://localhost:3003/getlastseen", {
                     method:"POST",
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({

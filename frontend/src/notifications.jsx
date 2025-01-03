@@ -9,13 +9,13 @@ function ShowNotifications(){
         (
             async ()=>{
                 //
-                const notificationsraw = await fetch("https://bluesky-clone.onrender.com/notifications/"+user.id, {
+                const notificationsraw = await fetch("http://localhost:3003/notifications/"+user.id, {
                 method:"GET",
                 headers: { 'Content-Type': 'application/json' },
                 })
                 const notifications = await notificationsraw.json()
                 //
-                let lastseennotifmodel = await fetch("https://bluesky-clone.onrender.com/getlastseennotif", {
+                let lastseennotifmodel = await fetch("http://localhost:3003/getlastseennotif", {
                     method:"POST",
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -25,7 +25,7 @@ function ShowNotifications(){
                 lastseennotifmodel = await lastseennotifmodel.json()
                 if (lastseennotifmodel.userid){
                     if (notifications.length>0){
-                        await fetch("https://bluesky-clone.onrender.com/updatelastseennotif", {
+                        await fetch("http://localhost:3003/updatelastseennotif", {
                         method:"POST",
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
@@ -36,7 +36,7 @@ function ShowNotifications(){
                     }
                 }else{
                     if (notifications.length>0){
-                        await fetch("https://bluesky-clone.onrender.com/createlastseennotif", {
+                        await fetch("http://localhost:3003/createlastseennotif", {
                         method:"POST",
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
@@ -45,7 +45,7 @@ function ShowNotifications(){
                         })
                     })
                     }else{
-                        await fetch("https://bluesky-clone.onrender.com/createemptylastseennotif", {
+                        await fetch("http://localhost:3003/createemptylastseennotif", {
                         method:"POST",
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({

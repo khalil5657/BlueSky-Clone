@@ -35,7 +35,7 @@ function RootLayout(){
   useEffect(()=>{
       (
         async () =>{
-            const response =  await fetch("https://bluesky-clone.onrender.com/user",{
+            const response =  await fetch("http://localhost:3003/user",{
                 method:"GET",
                 headers:{"Content-Type":"application/json"},
                 credentials:"include"
@@ -48,14 +48,14 @@ function RootLayout(){
             }
             if (content){
             /////////
-            const notificationsraw = await fetch("https://bluesky-clone.onrender.com/notifications/"+contentraw.id, {
+            const notificationsraw = await fetch("http://localhost:3003/notifications/"+contentraw.id, {
               method:"GET",
               headers: { 'Content-Type': 'application/json' },
             })
             const notifications = await notificationsraw.json()
             const lastNotification = notifications[notifications.length-1]
 
-            let lastseennotifmodel = await fetch("https://bluesky-clone.onrender.com/getlastseennotif", {
+            let lastseennotifmodel = await fetch("http://localhost:3003/getlastseennotif", {
                     method:"POST",
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -73,7 +73,7 @@ function RootLayout(){
             //////////
             //////////
 
-            let rawUsers = await fetch("https://bluesky-clone.onrender.com/chatusers/"+contentraw.id, {
+            let rawUsers = await fetch("http://localhost:3003/chatusers/"+contentraw.id, {
                     method:"GET",
                     headers: { 'Content-Type': 'application/json' },
                 })
@@ -81,7 +81,7 @@ function RootLayout(){
                 // setChatUsers(users)
                 let lista = []
                 for (let theuser of users){
-                    let lastMessage = await fetch("https://bluesky-clone.onrender.com/lastmessage", {
+                    let lastMessage = await fetch("http://localhost:3003/lastmessage", {
                         method:"POST",
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
@@ -91,7 +91,7 @@ function RootLayout(){
                     })
                     lastMessage = await lastMessage.json()
 
-                let lastseenmessagemodel = await fetch("https://bluesky-clone.onrender.com/getlastseen", {
+                let lastseenmessagemodel = await fetch("http://localhost:3003/getlastseen", {
                     method:"POST",
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
