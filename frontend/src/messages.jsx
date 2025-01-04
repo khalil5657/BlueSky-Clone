@@ -165,13 +165,13 @@ function Messages(){
         return <h1>Loading...</h1>
     }
     
-    return <div className="content">
+    return <div className="content" style={{display:"flex", flexDirection:"column", alignItems:"space-around", marginTop:"0"}}>
             <h2>{state.user.username}</h2>
             <div className="messages">
                 {messages.length>0?messages.map((message)=>listIt(message)):<h1>Make the first move!!!</h1>}
                 <div ref={messagesEndRef}></div>
             </div>
-            <div style={{position:"fixed", bottom:"0", left:"0", right:"0", height:"30px", marginLeft:"30%"}}>
+            <div style={{position:"fixed", bottom:"0", left:"0", right:"0", height:"30px"}} className="messageinput">
                 <form onSubmit={send} encType="multipart/form-data">
                     <input type="text" value={text} onChange={(e)=>handleMessage(e.target.value)}/>
                     <input type="file" name="picture" onChange={(e)=>handleFile(e.target.files[0])}/>
