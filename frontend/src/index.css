@@ -75,7 +75,7 @@ nav{
   padding-top: 7px;
   padding-bottom: 7px;
   align-items: center;
-  width: 88%
+  /* width: 88% */
 }
 .leftside-items div:hover, .left-item:hover{
   background-color: rgb(237, 237, 237);
@@ -366,6 +366,7 @@ nav{
   background-color: red;
   margin-left: 4px;
   color: #fff;
+  padding: 6px;
 }
 .chat{
   display: flex;
