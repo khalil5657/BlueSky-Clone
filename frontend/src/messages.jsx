@@ -20,7 +20,7 @@ function Messages(){
             if (!user||!state){
                 return navigate("/")
             }
-            const rawMessages = await fetch("http://localhost:3003/messages", {
+            const rawMessages = await fetch("https://bluesky-clone.onrender.com/messages", {
                 method:"POST",
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -30,7 +30,7 @@ function Messages(){
             })
             
             const messages = await rawMessages.json()
-            let lastseenmessagemodel = await fetch("http://localhost:3003/getlastseen", {
+            let lastseenmessagemodel = await fetch("https://bluesky-clone.onrender.com/getlastseen", {
                 method:"POST",
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -42,7 +42,7 @@ function Messages(){
 
             if (lastseenmessagemodel.fromid){
                 if (messages.length>0){
-                    await fetch("http://localhost:3003/updatelastseen", {
+                    await fetch("https://bluesky-clone.onrender.com/updatelastseen", {
                     method:"POST",
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -53,7 +53,7 @@ function Messages(){
                 }
             }else{
                 if (messages.length>0){
-                    await fetch("http://localhost:3003/createlastseen", {
+                    await fetch("https://bluesky-clone.onrender.com/createlastseen", {
                     method:"POST",
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -63,7 +63,7 @@ function Messages(){
                         })
                     })
                 }else{
-                    await fetch("http://localhost:3003/createemptylastseen", {
+                    await fetch("https://bluesky-clone.onrender.com/createemptylastseen", {
                     method:"POST",
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -96,7 +96,7 @@ function Messages(){
 
     async function send(e) {
         e.preventDefault()
-        const messageRaw = await fetch("http://localhost:3003/message/sent", {
+        const messageRaw = await fetch("https://bluesky-clone.onrender.com/message/sent", {
             method:"POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -110,13 +110,13 @@ function Messages(){
             const theFile = file;
             const formData = new FormData();
             formData.append('image', theFile);
-            const raw = await fetch(`http://localhost:3003/addmessagefile/`+message.id, {
+            const raw = await fetch(`https://bluesky-clone.onrender.com/addmessagefile/`+message.id, {
                 method: 'POST',
                 body:formData
             })
         }
         // update last seen message
-        let lastseenmessagemodel = await fetch("http://localhost:3003/getlastseen", {
+        let lastseenmessagemodel = await fetch("https://bluesky-clone.onrender.com/getlastseen", {
             method:"POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -126,7 +126,7 @@ function Messages(){
         })
         lastseenmessagemodel = await lastseenmessagemodel.json()
          console.log("hahah", lastseenmessagemodel)
-        await fetch("http://localhost:3003/updatelastseen", {
+        await fetch("https://bluesky-clone.onrender.com/updatelastseen", {
             method:"POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

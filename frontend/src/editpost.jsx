@@ -60,14 +60,14 @@ function EditPost(){
                 const formData = new FormData();
                 formData.append('image', theFile);
                 console.log(formData)
-                const raw = await fetch(`http://localhost:3003/editpostfile/`+post.id, {
+                const raw = await fetch(`https://bluesky-clone.onrender.com/editpostfile/`+post.id, {
                 method: 'POST',
                 body:formData
                 })
                 const newFile = await raw.json()
                 setFile1(newFile)
                 theFile1 = newFile
-                await fetch("http://localhost:3003/postimg/"+newFile.id, {
+                await fetch("https://bluesky-clone.onrender.com/postimg/"+newFile.id, {
                     method:"DELETE",
                     headers: { 'Content-Type': 'application/json' },
                 })
@@ -80,14 +80,14 @@ function EditPost(){
                 const formData = new FormData();
                 formData.append('image', theFile);
                 console.log(formData)
-                const raw = await fetch(`http://localhost:3003/editpostfile/`+post.id, {
+                const raw = await fetch(`https://bluesky-clone.onrender.com/editpostfile/`+post.id, {
                 method: 'POST',
                 body:formData
                 })
                 const newFile = await raw.json()
                 setFile2(newFile)
                 theFile2 = newFile
-                await fetch("http://localhost:3003/postimg/"+newFile.id, {
+                await fetch("https://bluesky-clone.onrender.com/postimg/"+newFile.id, {
                     method:"DELETE",
                     headers: { 'Content-Type': 'application/json' },
                 })
@@ -101,14 +101,14 @@ function EditPost(){
                 const formData = new FormData();
                 formData.append('image', theFile);
                 console.log(formData)
-                const raw = await fetch(`http://localhost:3003/editpostfile/`+post.id, {
+                const raw = await fetch(`https://bluesky-clone.onrender.com/editpostfile/`+post.id, {
                 method: 'POST',
                 body:formData
                 })
                 const newFile = await raw.json()
                 setFile3(newFile)
                 theFile3 = newFile
-                await fetch("http://localhost:3003/postimg/"+newFile.id, {
+                await fetch("https://bluesky-clone.onrender.com/postimg/"+newFile.id, {
                     method:"DELETE",
                     headers: { 'Content-Type': 'application/json' },
                 })
@@ -122,14 +122,14 @@ function EditPost(){
                 const formData = new FormData();
                 formData.append('image', theFile);
                 console.log(formData)
-                const raw = await fetch(`http://localhost:3003/editpostfile/`+post.id, {
+                const raw = await fetch(`https://bluesky-clone.onrender.com/editpostfile/`+post.id, {
                 method: 'POST',
                 body:formData
                 })
                 const newFile = await raw.json()
                 setFile4(newFile)
                 theFile4 = newFile
-                await fetch("http://localhost:3003/postimg/"+newFile.id, {
+                await fetch("https://bluesky-clone.onrender.com/postimg/"+newFile.id, {
                     method:"DELETE",
                     headers: { 'Content-Type': 'application/json' },
                 })
@@ -137,7 +137,7 @@ function EditPost(){
 
         }
 
-        await fetch("http://localhost:3003/editpost", {
+        await fetch("https://bluesky-clone.onrender.com/editpost", {
             method:"POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

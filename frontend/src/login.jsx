@@ -18,7 +18,7 @@ function Login(){
         e.preventDefault()
 
         try{
-            const raw = await fetch(`http://localhost:3003/login`, {
+            const raw = await fetch(`https://bluesky-clone.onrender.com/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include',

@@ -21,7 +21,7 @@ function ShowComment(){
             if (!user||!state){
                 return navigate("/")
             }
-            const rawComment = await fetch("http://localhost:3003/comment/"+state.comment.id, {
+            const rawComment = await fetch("https://bluesky-clone.onrender.com/comment/"+state.comment.id, {
                 method:"GET",
                 headers: { 'Content-Type': 'application/json' },
             })
@@ -33,7 +33,7 @@ function ShowComment(){
             let arr = []
             async function getRepliedTo(comment){
                 
-                const repliedtoRaw = await fetch("http://localhost:3003/comment/" + comment.repliedtoid, {
+                const repliedtoRaw = await fetch("https://bluesky-clone.onrender.com/comment/" + comment.repliedtoid, {
                     method:"GET",
                     headers: { 'Content-Type': 'application/json' },
                 })
@@ -87,7 +87,7 @@ function ShowComment(){
     }
     async function submitComment(e) {
         e.preventDefault()
-        const replyRaw = await fetch("http://localhost:3003/comment/reply", {
+        const replyRaw = await fetch("https://bluesky-clone.onrender.com/comment/reply", {
             method:"POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -102,7 +102,7 @@ function ShowComment(){
             const theFile = file;
             const formData = new FormData();
             formData.append('image', theFile);
-            const raw = await fetch(`http://localhost:3003/addcommentfile/`+commenta.id, {
+            const raw = await fetch(`https://bluesky-clone.onrender.com/addcommentfile/`+commenta.id, {
                 method: 'POST',
                 body:formData
             })
@@ -129,7 +129,7 @@ function ShowComment(){
     
     async function deleteIt(e, comment) {
         e.preventDefault()
-        await fetch("http://localhost:3003/comment/"+comment.id, {
+        await fetch("https://bluesky-clone.onrender.com/comment/"+comment.id, {
             method:"DELETE",
             headers: { 'Content-Type': 'application/json' },
         })
