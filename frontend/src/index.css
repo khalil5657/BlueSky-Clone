@@ -22,17 +22,19 @@
 nav{
   position: fixed;
   top: 0;
-  left: 28.25%;
+  /* left: 28.25%; */
   right: 30%;
-  width: 43.35%;
-  height: 15%;
+  /* width: 43.35%; */
+  width: 548px;
+  left: 50%;
+  height: 100px;
   background-color: white;
   display: flex;
   flex-direction: column;
   border-right: 1px solid rgb(205, 205, 205);
   border-left: 1px solid rgb(205, 205, 205);
   z-index: 100;
-  
+  transform: translateX(-50%);
 }
 .rightside{
   position: fixed;
@@ -42,9 +44,11 @@ nav{
   width: 28%;
 }
 .content{
-  margin-left: 28%;
-  margin-top: 10%;
-  width: 44%;
+  margin-left: 50%;
+  margin-top: 100px;
+  /* width: 44%; */
+  width: 550px;
+  transform: translateX(-50%);
 }
 .leftside-content{
   padding-left: 40%;
@@ -68,8 +72,9 @@ nav{
 .leftside-items div, .left-item{
   display: flex;
   gap: 10px;
-  padding-top: 9px;
-  padding-bottom: 9px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  align-items: center;
   width: 88%
 }
 .leftside-items div:hover, .left-item:hover{
@@ -230,6 +235,7 @@ nav{
   max-width: 100%;
   min-width: 100%;
   max-height: 100%;
+  min-height: 100%;
 }
 .img-follow{
   display: flex;
@@ -351,7 +357,7 @@ nav{
   flex-direction: column;
 }
 .messages{
-  margin-bottom: 150px;
+  margin-bottom: 100px;
 }
 .red{
   min-height: 8px;
@@ -592,4 +598,145 @@ font-size: 15px;
   color: black;
   font-size: 15px;
   font-weight: 400;
+}
+@media screen and (max-width: 1200px) {
+  .rightside{
+    display: none;
+  }
+  .leftside-content{
+    padding-left: 0;
+  }
+  .left-item div{
+    display: none;
+  }
+  .logo{
+    transform: translateX(-10px);
+  }
+  .left-item, .ss{
+    width: max-content;
+    border-right: 1px solid rgb(197, 197, 197);
+    padding-right: 14px;
+  }
+  .addpost span{
+    display: none;
+  }
+  .addpost, .post-btn{
+    position:fixed;
+    height: 30px;
+    width: 30px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 80px;
+    right: 40px;
+    
+  }
+  .leftside{
+    width: max-content;
+    padding: 30px;
+  }
+  .leftside-content .leftside-items .ss{
+    width: max-content;
+  }
+  .leftside-items div{
+    width: 0;
+  }
+}
+@media screen and (max-width: 800px) {
+  .content{
+    width: 100%;
+  }
+  nav{
+    width: 100%;
+  }
+  .logo{
+    display: none;
+  }
+  div.leftside{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 0px;
+    width: 0px;
+    /* background-color: red; */
+    z-index: 99;
+  }
+  .leftside-items{
+    display: flex;
+    flex-direction: row;
+    /* margin-top: 300px; */
+    background-color: white;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 7%;
+    justify-content: space-between;
+  }
+  .addpost, .post-btn{
+    bottom: 60px;
+    right: 30px;
+    border: none;
+  }
+  .messageinput{
+    padding-bottom: 70px;
+  }
+}
+@media screen and (max-width:550px){
+  .content{
+    width: 100%;
+    margin-left: 0px;
+    transform: translateX(0);
+  }
+    .post{
+      width: 100%;
+      margin-right: 0;
+    }
+    .home-post{
+      /* min-width: 50%; */
+      margin-right: 0;
+    }
+    .three-images, .four-images, .one-image, .two-images{
+      min-width: 80%;
+      /* height: 50%; */
+      height: fit-content;
+    }
+    .showmore{
+        transform: translateX(-100%) translateY(-100%);
+    }
+    
+}
+@media screen and (max-width:350px){
+    /* .three-images, .four-images, .one-image, .two-images{
+      min-width: 40px;
+      height: fit-content;
+    }
+    .showpost img{
+      width: 80px;
+      height: 80px;
+    } */
+    .left-item svg{
+      height: 20px;
+      width: 20px;
+    }
+    .content{
+      min-width: 350px;
+    }
+}
+@media screen and (max-width:1100px) {
+  .post, .profile{
+    max-width: 80%;
+    margin-left: 10%;
+    margin-bottom: 100px;
+  }
+}
+
+@media screen and (max-width:750px) {
+  .profile{
+    max-width: 100%;
+    margin-left: 0;
+    
+  }
 }

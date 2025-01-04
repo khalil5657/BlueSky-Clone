@@ -328,7 +328,7 @@ function Home(){
                             
                             </div>
                             <div>
-                                <p>{post.content}</p>
+                                <p style={{overflowWrap:"break-word"}}>{post.content}</p>
                                     {post.img.length==4&&<div className="four-images">
                                 <img src={post.img[0].url}/>
                                 <img src={post.img[1].url}/>
@@ -395,7 +395,7 @@ function Home(){
                             </path>
                         </svg>
                         {more==post.id&&
-                                    <div className="showmore">
+                                    <div className="showmore" style={{overflow:"hidden"}}>
                                         {post.writer.id==user.id&&
                                             <button onClick={(e)=>deleteIt(e, post)}>Delete</button>}
                                         {post.writer.id==user.id&&
@@ -428,7 +428,7 @@ function Home(){
                             
                             </div>
                             <div>
-                                <p>{post.content}</p>
+                                <p style={{overflowWrap:"break-word"}}>{post.content}</p>
                                     {post.img.length==4&&<div className="four-images">
                                 <img src={post.img[0].url}/>
                                 <img src={post.img[1].url}/>
@@ -494,7 +494,7 @@ function Home(){
                             </path>
                         </svg>
                         {more==post.id&&
-                                    <div className="showmore">
+                                    <div className="showmore" style={{overflow:"hidden"}}>
                                         {post.writer.id==user.id&&
                                             <button onClick={(e)=>deleteIt(e, post)}>Delete</button>}
                                         {post.writer.id==user.id&&
@@ -534,7 +534,7 @@ function Home(){
                     
                     </div>
                     <div>
-                        <p>{post.content}</p>
+                        <p style={{overflowWrap:"break-word"}}>{post.content}</p>
                             {post.img.length==4&&<div className="four-images">
                         <img src={post.img[0].url}/>
                         <img src={post.img[1].url}/>
@@ -599,7 +599,7 @@ function Home(){
                             </path>
                         </svg>
                         {more==post.id&&
-                                    <div className="showmore">
+                                    <div className="showmore" style={{overflow:"hidden"}}>
                                         {post.writer.id==user.id&&
                                             <button onClick={(e)=>deleteIt(e, post)}>Delete</button>}
                                         {post.writer.id==user.id&&
