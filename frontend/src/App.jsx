@@ -36,7 +36,7 @@ function RootLayout(){
   const [notifs, setNotifs] = useState(false)
   const [postsState, setPostsStatea] = useState("discover")
   const inputRef = useRef()
-  // alert("pokp")
+  alert(backendUrl)
 
   useEffect(()=>{
       (
