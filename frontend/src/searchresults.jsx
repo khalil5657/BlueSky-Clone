@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link, useLocation, useNavigate, useOutletContext } from "react-router"
 
-function SearchResults(){
+function SearchResults({backendUrl}){
     const [profiles, setProfiles] = useState('')
     const [posts, setPosts] = useState("")
     const [loading, setLoading] = useState(true)
@@ -16,7 +16,7 @@ function SearchResults(){
                 if (!user||!state){
                     return navigate("/")
                 }
-                const rawData = await fetch("https://bluesky-clone.onrender.com/search/"+state.word, {
+                const rawData = await fetch(`${backendUrl}/search/`+state.word, {
                     method:"GET",
                     headers: { 'Content-Type': 'application/json' },
 
@@ -145,7 +145,7 @@ function SearchResults(){
 
     async function deleteIt(e, post) {
         e.preventDefault()
-        await fetch("https://bluesky-clone.onrender.com/post/"+post.id, {
+        await fetch(`${backendUrl}/post/`+post.id, {
             method:"DELETE",
             headers: { 'Content-Type': 'application/json' },
         })
@@ -155,7 +155,7 @@ function SearchResults(){
     async function handleLike(e, post){
         e.preventDefault()
         if (post.likes.includes(user.id)){
-            let rawPosts = await fetch("https://bluesky-clone.onrender.com/post/unlike/"+post.id, {
+            let rawPosts = await fetch(`${backendUrl}/post/unlike/`+post.id, {
                         method:"POST",
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
@@ -164,7 +164,7 @@ function SearchResults(){
                         })
             let posts = await rawPosts.json()
         }else{
-            let rawPosts = await fetch("https://bluesky-clone.onrender.com/post/like/"+ post.id, {
+            let rawPosts = await fetch(`${backendUrl}/post/like/`+ post.id, {
                         method:"POST",
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({

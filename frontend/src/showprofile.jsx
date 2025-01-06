@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useLocation, Link, useOutletContext, useNavigate } from "react-router"
 
-function ShowProfile(){
+function ShowProfile({backendUrl}){
     const [usera, setUsera] = useOutletContext()
     const {state} = useLocation()
     const [posts, setPosts] = useState("")
@@ -27,7 +27,7 @@ function ShowProfile(){
             if (!state){
             return navigate("/")
             }
-            const rawPosts = await fetch("https://bluesky-clone.onrender.com/posts/profile/"+state.user.id, {
+            const rawPosts = await fetch(`${backendUrl}/posts/profile/`+state.user.id, {
                 method:"GET",
                 headers: { 'Content-Type': 'application/json' },
             })
@@ -35,7 +35,7 @@ function ShowProfile(){
             let posts = postsa.posts
             
 
-            const rawUser = await fetch("https://bluesky-clone.onrender.com/user/"+state.user.id, {
+            const rawUser = await fetch(`${backendUrl}/user/`+state.user.id, {
                 method:"GET",
                 headers: { 'Content-Type': 'application/json' },
 
@@ -46,7 +46,7 @@ function ShowProfile(){
             // console.log('l', state)
 
             // get all posts
-            const rawPosts2 = await fetch("https://bluesky-clone.onrender.com/posts/profile/retweets/"+state.user.id, {
+            const rawPosts2 = await fetch(`${backendUrl}/posts/profile/retweets/`+state.user.id, {
                 method:"GET",
                 headers: { 'Content-Type': 'application/json' },
             })
@@ -100,7 +100,7 @@ function ShowProfile(){
             console.log(lista)
             let final = []
             for (let postid of lista){
-                const rawPost =  await fetch("https://bluesky-clone.onrender.com/post/"+postid.id, {
+                const rawPost =  await fetch(`${backendUrl}/post/`+postid.id, {
                     method:"GET",
                     headers: { 'Content-Type': 'application/json' },
                 })
@@ -117,7 +117,7 @@ function ShowProfile(){
 
     async function addRetweet(e, post){
         e.preventDefault()
-        await fetch("https://bluesky-clone.onrender.com/addretweet", {
+        await fetch(`${backendUrl}/addretweet`, {
             method:"POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -171,7 +171,7 @@ function ShowProfile(){
 
     async function removeRetweet(e, post){
         e.preventDefault()
-        await fetch("https://bluesky-clone.onrender.com/removeretweet", {
+        await fetch(`${backendUrl}/removeretweet`, {
             method:"POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -185,7 +185,7 @@ function ShowProfile(){
 
     async function deleteIt(e, post) {
         e.preventDefault()
-        await fetch("https://bluesky-clone.onrender.com/post/"+post.id, {
+        await fetch(`${backendUrl}/post/`+post.id, {
             method:"DELETE",
             headers: { 'Content-Type': 'application/json' },
         })
@@ -194,7 +194,7 @@ function ShowProfile(){
     async function showLikes(likesArray) {
         let users = []
         for (let userid of likesArray){
-            const userraw = await fetch("https://bluesky-clone.onrender.com/user/"+userid, {
+            const userraw = await fetch(`${backendUrl}/user/`+userid, {
                 method:"GET",
                 headers: { 'Content-Type': 'application/json' },
             })
@@ -213,7 +213,7 @@ function ShowProfile(){
     async function showRetweets(retweetsArray){
         let users = []
         for (let obj of retweetsArray){
-            const userraw = await fetch("https://bluesky-clone.onrender.com/user/"+obj.id, {
+            const userraw = await fetch(`${backendUrl}/user/`+obj.id, {
                 method:"GET",
                 headers: { 'Content-Type': 'application/json' },
             })
@@ -450,7 +450,7 @@ function ShowProfile(){
         e.preventDefault()
         // setLoading(true)
         if (post.likes.includes(usera.id)){
-            let rawPosts = await fetch("https://bluesky-clone.onrender.com/post/unlike/"+post.id, {
+            let rawPosts = await fetch(`${backendUrl}/post/unlike/`+post.id, {
                         method:"POST",
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
@@ -459,7 +459,7 @@ function ShowProfile(){
                         })
             let posts = await rawPosts.json()
         }else{
-            let rawPosts = await fetch("https://bluesky-clone.onrender.com/post/like/"+ post.id, {
+            let rawPosts = await fetch(`${backendUrl}/post/like/`+ post.id, {
                         method:"POST",
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
@@ -477,7 +477,7 @@ function ShowProfile(){
         e.preventDefault()
         // setLoading(true)
         if (user.followers.includes(usera.id)){
-            await fetch("https://bluesky-clone.onrender.com/unfollow", {
+            await fetch(`${backendUrl}/unfollow`, {
                 method:"POST",
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -486,7 +486,7 @@ function ShowProfile(){
                 })
             })
         }else{
-            await fetch("https://bluesky-clone.onrender.com/follow", {
+            await fetch(`${backendUrl}/follow`, {
                 method:"POST",
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

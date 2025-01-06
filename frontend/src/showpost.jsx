@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link, useLocation, useNavigate, useOutletContext } from "react-router"
 
-function ShowPost(){
+function ShowPost({backendUrl}){
     const {state} = useLocation()
     const [user, setUser] = useOutletContext()
     const navigate = useNavigate()
@@ -24,7 +24,7 @@ function ShowPost(){
             if (!state||!user){
                 return navigate("/")
             }
-            const rawPost = await fetch("https://bluesky-clone.onrender.com/post/"+state.post.id, {
+            const rawPost = await fetch(`${backendUrl}/post/`+state.post.id, {
                 method:"GET",
                 headers: { 'Content-Type': 'application/json' },
             })
@@ -48,7 +48,7 @@ function ShowPost(){
 
     async function removeRetweet(e, post){
         e.preventDefault()
-        await fetch("https://bluesky-clone.onrender.com/removeretweet", {
+        await fetch(`${backendUrl}/removeretweet`, {
             method:"POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -62,7 +62,7 @@ function ShowPost(){
 
     async function addRetweet(e, post){
         e.preventDefault()
-        await fetch("https://bluesky-clone.onrender.com/addretweet", {
+        await fetch(`${backendUrl}/addretweet`, {
             method:"POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -77,7 +77,7 @@ function ShowPost(){
     async function showLikes(likesArray){
         let users = []
         for (let userid of likesArray){
-            const userraw = await fetch("https://bluesky-clone.onrender.com/user/"+userid, {
+            const userraw = await fetch(`${backendUrl}/user/`+userid, {
                 method:"GET",
                 headers: { 'Content-Type': 'application/json' },
             })
@@ -96,7 +96,7 @@ function ShowPost(){
     async function showRetweets(retweetsArray){
         let users = []
         for (let obj of retweetsArray){
-            const userraw = await fetch("https://bluesky-clone.onrender.com/user/"+obj.id, {
+            const userraw = await fetch(`${backendUrl}/user/`+obj.id, {
                 method:"GET",
                 headers: { 'Content-Type': 'application/json' },
             })
@@ -114,7 +114,7 @@ function ShowPost(){
 
     async function  addComment(e) {
         e.preventDefault()
-        const commentRaw  = await fetch("https://bluesky-clone.onrender.com/post/comment", {
+        const commentRaw  = await fetch(`${backendUrl}/post/comment`, {
             method:"POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -128,7 +128,7 @@ function ShowPost(){
             const theFile = file;
             const formData = new FormData();
             formData.append('image', theFile);
-            const raw = await fetch(`https://bluesky-clone.onrender.com/addcommentfile/`+comment.id, {
+            const raw = await fetch(`${backendUrl}/addcommentfile/`+comment.id, {
                 method: 'POST',
                 body:formData
             })
@@ -142,7 +142,7 @@ function ShowPost(){
     async function handleLike(e, post){
         e.preventDefault()
         if (post.likes.includes(user.id)){
-            let rawPosts = await fetch("https://bluesky-clone.onrender.com/post/unlike/"+post.id, {
+            let rawPosts = await fetch(`${backendUrl}/post/unlike/`+post.id, {
                         method:"POST",
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
@@ -151,7 +151,7 @@ function ShowPost(){
                         })
             let posts = await rawPosts.json()
         }else{
-            let rawPosts = await fetch("https://bluesky-clone.onrender.com/post/like/"+ post.id, {
+            let rawPosts = await fetch(`${backendUrl}/post/like/`+ post.id, {
                         method:"POST",
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
@@ -191,7 +191,7 @@ function ShowPost(){
 
     async function deleteIt(e, post) {
         e.preventDefault()
-        await fetch("https://bluesky-clone.onrender.com/post/"+post.id, {
+        await fetch(`${backendUrl}/post/`+post.id, {
             method:"DELETE",
             headers: { 'Content-Type': 'application/json' },
         })

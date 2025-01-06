@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react"
 import { useNavigate, useOutletContext } from "react-router"
-function Login(){
+function Login({backendUrl}){
     const [user, setUser, setSearchValue, setUsersWithNewMessages2, setUpdate] = useOutletContext()
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
@@ -18,7 +18,7 @@ function Login(){
         e.preventDefault()
 
         try{
-            const raw = await fetch(`https://bluesky-clone.onrender.com/login`, {
+            const raw = await fetch(`${backendUrl}/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include',

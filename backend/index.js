@@ -21,9 +21,14 @@ require("dotenv").config()
 const cloudinary = require('cloudinary').v2
 const multer  = require('multer')
 const upload = multer({ dest: 'uploads/' })
-
+let originUrl = ''
+if (process.env.STATE == "dev"){
+    originUrl = process.env.DEV_ORIGIN_URL
+}else{
+    originUrl = process.env.PROD_ORIGIN_URL
+}
 app.use(cors({
-    origin: "https://bluesky-clone-front.onrender.com",
+    origin: originUrl,
     methods : ["PUT", "DELETE", "POST", "GET"],
     credentials: true
 }))

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useNavigate, useOutletContext } from "react-router"
 
 
-function CreatePost(){
+function CreatePost({backendUrl}){
     const [user, setUser] = useOutletContext()
     const [text, setText] = useState("")
     const [file1, setFile1] = useState("")
@@ -23,7 +23,7 @@ function CreatePost(){
     async function post(e) {
         e.preventDefault()
 
-        const rawPost = await fetch(`https://bluesky-clone.onrender.com/addpost`, {
+        const rawPost = await fetch(`${backendUrl}/addpost`, {
             method:'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -38,7 +38,7 @@ function CreatePost(){
             const formData = new FormData();
             formData.append('image', theFile);
             console.log(formData)
-            const raw = await fetch(`https://bluesky-clone.onrender.com/addpostfile/`+post.id, {
+            const raw = await fetch(`${backendUrl}/addpostfile/`+post.id, {
             method: 'POST',
             body:formData
         })
@@ -49,7 +49,7 @@ function CreatePost(){
             const formData = new FormData();
             formData.append('image', theFile);
             console.log(formData)
-            const raw = await fetch(`https://bluesky-clone.onrender.com/addpostfile/`+post.id, {
+            const raw = await fetch(`${backendUrl}/addpostfile/`+post.id, {
             method: 'POST',
             body:formData
         })
@@ -60,7 +60,7 @@ function CreatePost(){
             const formData = new FormData();
             formData.append('image', theFile);
             console.log(formData)
-            const raw = await fetch(`https://bluesky-clone.onrender.com/addpostfile/`+post.id, {
+            const raw = await fetch(`${backendUrl}/addpostfile/`+post.id, {
             method: 'POST',
             body:formData
         })
@@ -71,7 +71,7 @@ function CreatePost(){
             const formData = new FormData();
             formData.append('image', theFile);
             console.log(formData)
-            const raw = await fetch(`https://bluesky-clone.onrender.com/addpostfile/`+post.id, {
+            const raw = await fetch(`${backendUrl}/addpostfile/`+post.id, {
             method: 'POST',
             body:formData
         })

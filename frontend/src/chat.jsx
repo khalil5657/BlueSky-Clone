@@ -3,7 +3,7 @@ import { Link, useNavigate, useOutletContext } from "react-router"
 
 
 
-function Chat(){
+function Chat({backendUrl}){
     const [user, setUser, setSearchValue, setUsersWithNewMessages2] = useOutletContext()
     const [chatUsers, setChatUsers] = useState("")
     const [update, setUpdate] = useState("")
@@ -18,7 +18,7 @@ function Chat(){
                 return navigate("/")
             }
             
-                let rawUsers = await fetch("https://bluesky-clone.onrender.com/chatusers/"+user.id, {
+                let rawUsers = await fetch(`${backendUrl}/chatusers/`+user.id, {
                     method:"GET",
                     headers: { 'Content-Type': 'application/json' },
                 })
@@ -26,7 +26,7 @@ function Chat(){
                 setChatUsers(users)
                 let lista = []
                 for (let theuser of users){
-                    let lastMessage = await fetch("https://bluesky-clone.onrender.com/lastmessage", {
+                    let lastMessage = await fetch(`${backendUrl}/lastmessage`, {
                         method:"POST",
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
@@ -36,7 +36,7 @@ function Chat(){
                     })
                     lastMessage = await lastMessage.json()
 
-                let lastseenmessagemodel = await fetch("https://bluesky-clone.onrender.com/getlastseen", {
+                let lastseenmessagemodel = await fetch(`${backendUrl}/getlastseen`, {
                     method:"POST",
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
