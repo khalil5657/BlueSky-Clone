@@ -2,7 +2,7 @@ import { use } from "react"
 import { useEffect, useState } from "react"
 import { useLocation, useNavigate, useOutletContext } from "react-router"
 
-function EditComment(){
+function EditComment({backendUrl}){
     const [user, setUser] = useOutletContext()
     const {state} = useLocation()
     const navigate = useNavigate()
@@ -36,7 +36,7 @@ function EditComment(){
                 if (!file.url){
                     console.log('kokok',state.comment)
                     ///
-                    await fetch("https://bluesky-clone.onrender.com/commentimg/"+state.comment.img.id, {
+                    await fetch(`${backendUrl}/commentimg/`+state.comment.img.id, {
                         method:"DELETE",
                         headers: { 'Content-Type': 'application/json' },
 
@@ -46,13 +46,13 @@ function EditComment(){
                     const formData = new FormData();
                     formData.append('image', theFile);
                     console.log(formData)
-                    const raw = await fetch(`https://bluesky-clone.onrender.com/editcommentfile/`+state.comment.id, {
+                    const raw = await fetch(`${backendUrl}/editcommentfile/`+state.comment.id, {
                     method: 'POST',
                     body:formData
                     })
                     const newFile = await raw.json()
                     theFile1 = newFile
-                    // await fetch("https://bluesky-clone.onrender.com/commentimg/"+newFile.id, {
+                    // await fetch("http://localhost:3003/commentimg/"+newFile.id, {
                     //     method:"DELETE",
                     //     headers: { 'Content-Type': 'application/json' },
 
@@ -60,7 +60,7 @@ function EditComment(){
 
                 }
             }
-            await fetch("https://bluesky-clone.onrender.com/editcomment/"+state.comment.id, {
+            await fetch(`${backendUrl}/editcomment/`+state.comment.id, {
                 method:"POST",
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

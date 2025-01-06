@@ -360,11 +360,11 @@ nav{
   margin-bottom: 100px;
 }
 .red{
-  min-height: 8px;
-  min-width: 8px;
+  /* min-height: 8px;
+  min-width: 8px; */
   border-radius: 50%;
   background-color: red;
-  margin-left: 4px;
+  /* margin-left: 4px; */
   color: #fff;
   padding: 6px;
 }
@@ -642,6 +642,18 @@ font-size: 15px;
   }
   .leftside-items div{
     width: 0;
+  }
+  div.red{
+    display: flex;
+    position: absolute;
+    transform: translateX(20px) translateY(-10px);
+    padding: 3px;
+    align-items: center;
+    justify-content: center;
+    background-color: red;
+    font-size: 8px;
+    margin-right: 0;
+
   }
 }
 @media screen and (max-width: 800px) {

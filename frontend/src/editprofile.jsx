@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useNavigate, useOutletContext } from "react-router"
 
 
-function EditProfile(){
+function EditProfile({backendUrl}){
     const [user, setUser] = useOutletContext()
     const [bannerFile, setBannerFile] = useState('')
     const [avatarFile, setAvatarFile] = useState("")
@@ -12,7 +12,7 @@ function EditProfile(){
     async function postIt(e) {
         e.preventDefault()
         if (bioContent){
-            await fetch("https://bluesky-clone.onrender.com/editprofile", {
+            await fetch(`${backendUrl}/editprofile`, {
                 method:"POST",
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -26,7 +26,7 @@ function EditProfile(){
             const formData = new FormData();
             formData.append('image', theFile);
             console.log(formData)
-            const raw = await fetch(`https://bluesky-clone.onrender.com/editprofilefile/`+user.id+"/banner", {
+            const raw = await fetch(`${backendUrl}/editprofilefile/`+user.id+"/banner", {
                 method: 'POST',
                 body:formData
                 })
@@ -37,7 +37,7 @@ function EditProfile(){
             const formData = new FormData();
             formData.append('image', theFile);
             console.log(formData)
-            const raw = await fetch(`https://bluesky-clone.onrender.com/editprofilefile/`+user.id+"/avatar", {
+            const raw = await fetch(`${backendUrl}/editprofilefile/`+user.id+"/avatar", {
                 method: 'POST',
                 body:formData
                 })

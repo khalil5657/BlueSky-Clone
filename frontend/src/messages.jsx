@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useLocation, useNavigate, useOutletContext } from "react-router"
 import { useRef } from "react"
 
-function Messages(){
+function Messages({backendUrl}){
     const [user, setUser] = useOutletContext()
     const {state} = useLocation()
     const [messages, setMessages] = useState("")
@@ -20,7 +20,7 @@ function Messages(){
             if (!user||!state){
                 return navigate("/")
             }
-            const rawMessages = await fetch("https://bluesky-clone.onrender.com/messages", {
+            const rawMessages = await fetch(`${backendUrl}/messages`, {
                 method:"POST",
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -30,7 +30,7 @@ function Messages(){
             })
             
             const messages = await rawMessages.json()
-            let lastseenmessagemodel = await fetch("https://bluesky-clone.onrender.com/getlastseen", {
+            let lastseenmessagemodel = await fetch(`${backendUrl}/getlastseen`, {
                 method:"POST",
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -42,7 +42,7 @@ function Messages(){
 
             if (lastseenmessagemodel.fromid){
                 if (messages.length>0){
-                    await fetch("https://bluesky-clone.onrender.com/updatelastseen", {
+                    await fetch(`${backendUrl}/updatelastseen`, {
                     method:"POST",
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -53,7 +53,7 @@ function Messages(){
                 }
             }else{
                 if (messages.length>0){
-                    await fetch("https://bluesky-clone.onrender.com/createlastseen", {
+                    await fetch(`${backendUrl}/createlastseen`, {
                     method:"POST",
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -63,7 +63,7 @@ function Messages(){
                         })
                     })
                 }else{
-                    await fetch("https://bluesky-clone.onrender.com/createemptylastseen", {
+                    await fetch(`${backendUrl}/createemptylastseen`, {
                     method:"POST",
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -96,7 +96,7 @@ function Messages(){
 
     async function send(e) {
         e.preventDefault()
-        const messageRaw = await fetch("https://bluesky-clone.onrender.com/message/sent", {
+        const messageRaw = await fetch(`${backendUrl}/message/sent`, {
             method:"POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -110,13 +110,13 @@ function Messages(){
             const theFile = file;
             const formData = new FormData();
             formData.append('image', theFile);
-            const raw = await fetch(`https://bluesky-clone.onrender.com/addmessagefile/`+message.id, {
+            const raw = await fetch(`${backendUrl}/addmessagefile/`+message.id, {
                 method: 'POST',
                 body:formData
             })
         }
         // update last seen message
-        let lastseenmessagemodel = await fetch("https://bluesky-clone.onrender.com/getlastseen", {
+        let lastseenmessagemodel = await fetch(`${backendUrl}/getlastseen`, {
             method:"POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -126,7 +126,7 @@ function Messages(){
         })
         lastseenmessagemodel = await lastseenmessagemodel.json()
          console.log("hahah", lastseenmessagemodel)
-        await fetch("https://bluesky-clone.onrender.com/updatelastseen", {
+        await fetch(`${backendUrl}/updatelastseen`, {
             method:"POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

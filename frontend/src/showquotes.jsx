@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link, useLocation, useOutletContext } from "react-router"
 
-function ShowQuotes(){
+function ShowQuotes({backendUrl}){
     const [user, setUser] = useOutletContext()
     const {state } = useLocation()
     const [quotes, setQuotes] = useState("")
@@ -9,7 +9,7 @@ function ShowQuotes(){
     useEffect(()=>{
         (
             async ()=>{
-                // const postraw = await fetch("https://bluesky-clone.onrender.com/post/"+state.post.id, {
+                // const postraw = await fetch("http://localhost:3003/post/"+state.post.id, {
                 //     method:"GET",
                 //     headers: { 'Content-Type': 'application/json' },
 

@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useNavigate, useOutletContext } from "react-router"
 
-function Settings(){
+function Settings({backendUrl}){
     const navigate = useNavigate()
     const [user, setUser] = useOutletContext()
     useEffect(()=>{
@@ -13,7 +13,7 @@ function Settings(){
         )()
     }, [])
     async function logOut() {
-        await fetch(`https://bluesky-clone.onrender.com/logout`, {
+        await fetch(`${backendUrl}/logout`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include',

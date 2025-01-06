@@ -20,7 +20,12 @@ import QuotePost from './quotepost'
 import EditProfile from './editprofile'
 import ShowQuotes from './showquotes'
 import ShowNotifications from './notifications'
-
+let backendUrl = ''
+if (import.meta.env.VITE_STATE == 'dev'){
+  backendUrl = import.meta.env.VITE_DEV_BACKEND_URL
+}else{
+    backendUrl = import.meta.env.VITE_PROD_BACKEND_URL
+}
 function RootLayout(){
   const [user, setUser] = useState("")
   const [count, setCount] = useState(0)
@@ -32,10 +37,11 @@ function RootLayout(){
   const [postsState, setPostsStatea] = useState("discover")
   const inputRef = useRef()
   // alert("pokp")
+
   useEffect(()=>{
       (
         async () =>{
-            const response =  await fetch("https://bluesky-clone.onrender.com/user",{
+            const response =  await fetch(`${backendUrl}/user`,{
                 method:"GET",
                 headers:{"Content-Type":"application/json"},
                 credentials:"include"
@@ -48,14 +54,14 @@ function RootLayout(){
             }
             if (content){
             /////////
-            const notificationsraw = await fetch("https://bluesky-clone.onrender.com/notifications/"+contentraw.id, {
+            const notificationsraw = await fetch(`${backendUrl}/notifications/`+contentraw.id, {
               method:"GET",
               headers: { 'Content-Type': 'application/json' },
             })
             const notifications = await notificationsraw.json()
             const lastNotification = notifications[notifications.length-1]
 
-            let lastseennotifmodel = await fetch("https://bluesky-clone.onrender.com/getlastseennotif", {
+            let lastseennotifmodel = await fetch(`${backendUrl}/getlastseennotif`, {
                     method:"POST",
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -73,7 +79,7 @@ function RootLayout(){
             //////////
             //////////
 
-            let rawUsers = await fetch("https://bluesky-clone.onrender.com/chatusers/"+contentraw.id, {
+            let rawUsers = await fetch(`${backendUrl}/chatusers/`+contentraw.id, {
                     method:"GET",
                     headers: { 'Content-Type': 'application/json' },
                 })
@@ -81,7 +87,7 @@ function RootLayout(){
                 // setChatUsers(users)
                 let lista = []
                 for (let theuser of users){
-                    let lastMessage = await fetch("https://bluesky-clone.onrender.com/lastmessage", {
+                    let lastMessage = await fetch(`${backendUrl}/lastmessage`, {
                         method:"POST",
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
@@ -91,7 +97,7 @@ function RootLayout(){
                     })
                     lastMessage = await lastMessage.json()
 
-                let lastseenmessagemodel = await fetch("https://bluesky-clone.onrender.com/getlastseen", {
+                let lastseenmessagemodel = await fetch(`${backendUrl}/getlastseen`, {
                     method:"POST",
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -234,71 +240,71 @@ const router = createBrowserRouter([
     children:[
       {
         path:"/",
-        element:<Home />
+        element:<Home backendUrl={backendUrl}/>
       },
       {
         path:"/signup",
-        element:<SignUp />
+        element:<SignUp backendUrl={backendUrl}/>
       },
       {
         path:"/login",
-        element:<Login />
+        element:<Login backendUrl={backendUrl}/>
       },
       {
         path:"/createpost",
-        element:<CreatePost />
+        element:<CreatePost backendUrl={backendUrl}/>
       },
       {
         path:"/showpost",
-        element:<ShowPost />
+        element:<ShowPost backendUrl={backendUrl}/>
       },
       {
         path:"/showprofile",
-        element:<ShowProfile />
+        element:<ShowProfile backendUrl={backendUrl}/>
       },
       {
         path:"/showcomment/:id",
-        element:<ShowComment />
+        element:<ShowComment backendUrl={backendUrl}/>
       },
       {
         path:"/settings",
-        element:<Settings />
+        element:<Settings backendUrl={backendUrl}/>
       },
       {
         path:"/chat",
-        element:<Chat />
+        element:<Chat backendUrl={backendUrl}/>
       },
       {
         path:"/messages",
-        element:<Messages />
+        element:<Messages backendUrl={backendUrl}/>
       },
       {
         path:"/editpost",
-        element:<EditPost />
+        element:<EditPost backendUrl={backendUrl}/>
       },
       {
         path:"/editcomment",
-        element:<EditComment/>
+        element:<EditComment backendUrl={backendUrl}/>
       },
       {
         path:"/showsearchresults",
-        element:<SearchResults/>
+        element:<SearchResults backendUrl={backendUrl}/>
       },
       {
         path:"/quotepost",
-        element:<QuotePost/>
+        element:<QuotePost backendUrl={backendUrl}/>
       },
       {
         path:"/editprofile",
-        element:<EditProfile/>
+        element:<EditProfile backendUrl={backendUrl}/>
       },
       {
         path:"/showquotes",
-        element:<ShowQuotes/>
+        element:<ShowQuotes backendUrl={backendUrl}/>
       },
       {
         path:"/notifications",
-        element:<ShowNotifications/>
+        element:<ShowNotifications backendUrl={backendUrl}/>
       },
     ] 
   }

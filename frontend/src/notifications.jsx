@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useOutletContext } from "react-router"
 
-function ShowNotifications(){
+function ShowNotifications({backendUrl}){
     const [user, setUser, setSearchValue, setUsersWithNewMessages2, setUpdate, setNotifsa] = useOutletContext()
     const [notifs, setNotifs] = useState([])
     const [loading, setLoading] = useState(true)
@@ -9,13 +9,13 @@ function ShowNotifications(){
         (
             async ()=>{
                 //
-                const notificationsraw = await fetch("https://bluesky-clone.onrender.com/notifications/"+user.id, {
+                const notificationsraw = await fetch(`${backendUrl}/notifications/`+user.id, {
                 method:"GET",
                 headers: { 'Content-Type': 'application/json' },
                 })
                 const notifications = await notificationsraw.json()
                 //
-                let lastseennotifmodel = await fetch("https://bluesky-clone.onrender.com/getlastseennotif", {
+                let lastseennotifmodel = await fetch(`${backendUrl}/getlastseennotif`, {
                     method:"POST",
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -25,7 +25,7 @@ function ShowNotifications(){
                 lastseennotifmodel = await lastseennotifmodel.json()
                 if (lastseennotifmodel.userid){
                     if (notifications.length>0){
-                        await fetch("https://bluesky-clone.onrender.com/updatelastseennotif", {
+                        await fetch(`${backendUrl}/updatelastseennotif`, {
                         method:"POST",
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
@@ -36,7 +36,7 @@ function ShowNotifications(){
                     }
                 }else{
                     if (notifications.length>0){
-                        await fetch("https://bluesky-clone.onrender.com/createlastseennotif", {
+                        await fetch(`${backendUrl}/createlastseennotif`, {
                         method:"POST",
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
@@ -45,7 +45,7 @@ function ShowNotifications(){
                         })
                     })
                     }else{
-                        await fetch("https://bluesky-clone.onrender.com/createemptylastseennotif", {
+                        await fetch(`${backendUrl}/createemptylastseennotif`, {
                         method:"POST",
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
