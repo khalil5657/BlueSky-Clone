@@ -133,6 +133,7 @@ app.post("/logout", (req, res)=>{
 })
 
 app.get("/user", async(req, res)=>{
+    console.log("ttttt")
     try{
         const cookie = req.cookies['jwt']
         const claims = jwt.verify(cookie, "secret")
