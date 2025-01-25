@@ -3,6 +3,8 @@ const express = require("express");
 const cookieParser = require("cookie-parser")
 const bcrypt = require("bcryptjs")
 
+const fs = require('fs')
+
 const jwt = require('jsonwebtoken')
 const app = express();
 
@@ -82,6 +84,8 @@ app.post("/addprofileimage/:id", upload.single("image"), async(req, res)=>{
         }
       }
     })
+    // Clear temporary local download
+    fs.unlinkSync(path);
     res.send({message:"success"})
     }catch(error){
       console.log(error)
@@ -292,6 +296,8 @@ app.post("/addpostfile/:id", upload.single("image"), async(req, res)=>{
         postid:req.params.id
       }
     })
+    // Clear temporary local download
+    fs.unlinkSync(path);
     res.send({message:"success"})
     }catch(error){
       console.log(error)
@@ -660,6 +666,8 @@ app.post("/addcommentfile/:id", upload.single("image"), async(req, res)=>{
         }
       }
     })
+    // Clear temporary local download
+    fs.unlinkSync(path);
     res.send({message:"success"})
     }catch(error){
       console.log(error)
@@ -689,6 +697,8 @@ app.post("/addmessagefile/:id", upload.single("image"), async(req, res)=>{
         }
       }
     })
+    // Clear temporary local download
+    fs.unlinkSync(path);
     res.send({message:"success"})
     }catch(error){
       console.log(error)
@@ -856,6 +866,8 @@ app.post("/editpostfile/:id", upload.single("image"), async(req, res)=>{
         postid:req.params.id
       }
     })
+    // Clear temporary local download
+    fs.unlinkSync(path);
     res.send(image)
     }catch(error){
       console.log(error)
@@ -935,6 +947,8 @@ app.post("/editcommentfile/:id", upload.single("image"), async(req, res)=>{
         url:results.secure_url
       }
     })
+    // Clear temporary local download
+    fs.unlinkSync(path);
     res.send(image)
     }catch(error){
       console.log(error)
@@ -1229,6 +1243,8 @@ app.post("/editprofilefile/:userid/:thing", upload.single("image"), async(req, r
             userid:req.params.userid
         }
         })
+        // Clear temporary local download
+        fs.unlinkSync(path);
         res.send(image)
         }catch(error){
         console.log(error)
@@ -1250,6 +1266,8 @@ app.post("/editprofilefile/:userid/:thing", upload.single("image"), async(req, r
             userid:req.params.userid
         }
         })
+        // Clear temporary local download
+        fs.unlinkSync(path);
         res.send(image)
         }catch(error){
         console.log(error)
