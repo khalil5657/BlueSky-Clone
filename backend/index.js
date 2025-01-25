@@ -30,7 +30,7 @@ if (process.env.STATE == "dev"){
     originUrl = process.env.PROD_ORIGIN_URL
 }
 app.use(cors({
-    origin: originUrl,
+    origin: "*",
     methods : ["PUT", "DELETE", "POST", "GET"],
     credentials: true
 }))
