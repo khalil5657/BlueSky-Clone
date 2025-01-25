@@ -3,6 +3,8 @@ const express = require("express");
 const cookieParser = require("cookie-parser")
 const bcrypt = require("bcryptjs")
 
+const fs = require('fs')
+
 const jwt = require('jsonwebtoken')
 const app = express();
 
@@ -82,6 +84,8 @@ app.post("/addprofileimage/:id", upload.single("image"), async(req, res)=>{
         }
       }
     })
+    // Clear temporary local download
+    fs.unlinkSync(path);
     res.send({message:"success"})
     }catch(error){
       console.log(error)
