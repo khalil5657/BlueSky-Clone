@@ -1237,7 +1237,7 @@ app.post("/editprofilefile/:userid/:thing", upload.single("image"), async(req, r
         api_secret :process.env.API_SECRET
         });
         const results = await cloudinary.uploader.upload(path, {resource_type: 'auto'})
-        await prisma.banner.delete({
+        await prisma.banner.deleteMany({
             where:{
                 userid:req.params.userid
             }
@@ -1250,7 +1250,7 @@ app.post("/editprofilefile/:userid/:thing", upload.single("image"), async(req, r
         }
         })
         // Clear temporary local download
-        // fs.unlinkSync(path);
+        fs.unlinkSync(path);
         res.send(image)
         }catch(error){
         console.log(error)
@@ -1265,7 +1265,7 @@ app.post("/editprofilefile/:userid/:thing", upload.single("image"), async(req, r
         api_secret :process.env.API_SECRET
         });
         const results = await cloudinary.uploader.upload(path, {resource_type: 'auto'})
-        await prisma.image.delete({
+        await prisma.image.deleteMany({
             where:{
                 userid:req.params.userid
             }
@@ -1291,7 +1291,7 @@ app.post("/editprofilefile/:userid/:thing", upload.single("image"), async(req, r
             }
         })
         // Clear temporary local download
-        // fs.unlinkSync(path);
+        fs.unlinkSync(path);
         res.send(image)
         }catch(error){
         console.log(error)
