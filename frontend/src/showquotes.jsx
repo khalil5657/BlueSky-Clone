@@ -16,7 +16,6 @@ function ShowQuotes({backendUrl}){
                 // })
                 // const post = await postraw.json()
 
-                console.log('lokoko', state.post)
                 setQuotes(state.post.quotedby)
                 setLoading(false)
             }

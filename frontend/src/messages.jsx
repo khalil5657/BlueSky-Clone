@@ -125,7 +125,6 @@ function Messages({backendUrl}){
             })
         })
         lastseenmessagemodel = await lastseenmessagemodel.json()
-         console.log("hahah", lastseenmessagemodel)
         await fetch(`${backendUrl}/updatelastseen`, {
             method:"POST",
             headers: { 'Content-Type': 'application/json' },
@@ -141,7 +140,6 @@ function Messages({backendUrl}){
     }
 
     function listIt(message){
-        console.log(message)
         if (message.fromid==user.id){
             return <div className="green">
                     <div>

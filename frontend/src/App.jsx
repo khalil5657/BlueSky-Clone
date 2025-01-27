@@ -68,7 +68,6 @@ function RootLayout(){
                     })
                 })
               lastseennotifmodel = await lastseennotifmodel.json()
-              console.log(lastseennotifmodel, 'dddd', notifications)
               if (lastseennotifmodel.id&&lastNotification){
                   if (lastseennotifmodel.lastseennotificationid!=lastNotification.id){
                   setNotifs(true)
@@ -115,7 +114,6 @@ function RootLayout(){
                 }
                 }
                 setUsersWithNewMessages2(lista)
-                console.log(lista, 'rd')
             }
             //////////
             setLoading(false)

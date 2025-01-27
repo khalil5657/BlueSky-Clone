@@ -17,7 +17,6 @@ function ShowComment({backendUrl}){
     (
         async () =>{
 
-            console.log("backed",  (repliedTo))
             if (!user||!state){
                 return navigate("/")
             }
@@ -65,7 +64,6 @@ function ShowComment({backendUrl}){
     }, [update, state])
 
     function listIt(comment){
-        // console.log(comment)
         return <Link to={`/showcomment/${comment.id}`} state={{comment:comment, post:post}}className="Link" >
                     <div style={{border:"1px solid black", display:"grid", gridTemplateColumns:"40px 1fr"}}>
                         {comment.writer.img?<img style={{height:"40px", width:"40px", borderRadius:"20px"}} src={comment.writer.img.url} />:<img style={{height:"40px"}} src="https://res.cloudinary.com/dlwgxdiyp/image/upload/v1730058205/d76lwdwx5ojtcdk302eb.jpg" />}
@@ -140,7 +138,6 @@ function ShowComment({backendUrl}){
     if (loading){
         return <h1>Loading...</h1>
     }
-    console.log(comment)
     
     return <div className="post">
 

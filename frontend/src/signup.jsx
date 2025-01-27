@@ -17,11 +17,7 @@ function SignUp({backendUrl}){
         }
         )()
     }, [])
-    // useEffect(()=>{
-    //     if (usera){
-    //         console.log("pk")
-    //         return navigate("/login")      }
-    // })
+    
 
     function changeUsername(value){
         setUsername(value)
@@ -63,7 +59,6 @@ function SignUp({backendUrl}){
             const theFile = file;
             const formData = new FormData();
             formData.append('image', theFile);
-            console.log(formData)
             const raw = await fetch(`${backendUrl}/addprofileimage/`+data.id, {
             method: 'POST',
             body:formData
@@ -73,7 +68,6 @@ function SignUp({backendUrl}){
             const theFile = bannerFile;
             const formData = new FormData();
             formData.append('image', theFile);///////
-            console.log(formData)
             const raw = await fetch(`${backendUrl}/editprofilefile/`+data.id+"/banner", {
             method: 'POST',
             body:formData

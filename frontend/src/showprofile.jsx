@@ -40,10 +40,8 @@ function ShowProfile({backendUrl}){
                 headers: { 'Content-Type': 'application/json' },
 
             })
-            // console.log('f', state)
             const user = await rawUser.json()
             setUser(user)
-            // console.log('l', state)
 
             // get all posts
             const rawPosts2 = await fetch(`${backendUrl}/posts/profile/retweets/`+state.user.id, {
@@ -68,8 +66,6 @@ function ShowProfile({backendUrl}){
             //concat all posts
             posts = posts.concat(retPosts)
             let lista = []
-            console.log(retPosts)
-            console.log(posts)
 
             for (let post of posts){
                 if (post.retweets.length>0){
@@ -97,7 +93,6 @@ function ShowProfile({backendUrl}){
                 }
                 return 0
             })
-            console.log(lista)
             let final = []
             for (let postid of lista){
                 const rawPost =  await fetch(`${backendUrl}/post/`+postid.id, {
@@ -502,7 +497,6 @@ function ShowProfile({backendUrl}){
     if (loading){
         return <h1>Loading...</h1>
     }
-    // console.log("bannwr", user)
     return <div className="profile">
                 <div className="profile-info">
                     <div className="banner">
