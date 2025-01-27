@@ -33,12 +33,10 @@ function QuotePost({backendUrl}){
             })
         })
         const post = await rawPost.json()
-        console.log(post)
         if (file1){
             const theFile = file1;
             const formData = new FormData();
             formData.append('image', theFile);
-            console.log(formData)
             const raw = await fetch(`${backendUrl}/addpostfile/`+post.id, {
             method: 'POST',
             body:formData
@@ -49,7 +47,6 @@ function QuotePost({backendUrl}){
             const theFile = file2;
             const formData = new FormData();
             formData.append('image', theFile);
-            console.log(formData)
             const raw = await fetch(`${backendUrl}/addpostfile/`+post.id, {
             method: 'POST',
             body:formData
@@ -60,7 +57,6 @@ function QuotePost({backendUrl}){
             const theFile = file3;
             const formData = new FormData();
             formData.append('image', theFile);
-            console.log(formData)
             const raw = await fetch(`${backendUrl}/addpostfile/`+post.id, {
             method: 'POST',
             body:formData
@@ -71,7 +67,6 @@ function QuotePost({backendUrl}){
             const theFile = file4;
             const formData = new FormData();
             formData.append('image', theFile);
-            console.log(formData)
             const raw = await fetch(`${backendUrl}/addpostfile/`+post.id, {
             method: 'POST',
             body:formData

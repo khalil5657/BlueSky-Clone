@@ -25,7 +25,6 @@ function EditProfile({backendUrl}){
             const theFile = bannerFile
             const formData = new FormData();
             formData.append('image', theFile);
-            console.log(formData)
             const raw = await fetch(`${backendUrl}/editprofilefile/`+user.id+"/banner", {
                 method: 'POST',
                 body:formData
@@ -36,7 +35,6 @@ function EditProfile({backendUrl}){
             const theFile = avatarFile
             const formData = new FormData();
             formData.append('image', theFile);
-            console.log(formData)
             const raw = await fetch(`${backendUrl}/editprofilefile/`+user.id+"/avatar", {
                 method: 'POST',
                 body:formData

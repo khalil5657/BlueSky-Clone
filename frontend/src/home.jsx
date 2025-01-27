@@ -35,7 +35,6 @@ function Home({backendUrl}){
                     let obj = {id:user.id, username:user.username}
                     following.push(obj)
                 }
-                console.log(following, 'okok')
                 setFollowingIds(following)
                 let rawDPosts = await fetch(`${backendUrl}/posts`, {
                         method:"GET",
@@ -55,13 +54,11 @@ function Home({backendUrl}){
                     if (dposts.posts){
                         setDiscoverPosts(dposts.posts)
                     }
-                    console.log(dposts.posts, 'plpplplplplp')
                 let rawFPosts = await fetch(`${backendUrl}/posts/`+user.id, {
                         method:"GET",
                         headers: { 'Content-Type': 'application/json' },
                         })
                     let fposts = await rawFPosts.json()
-                    console.log(fposts, 'pp')
                     if (fposts.posts){
 
                         // setFollowingPosts(fposts.posts)
@@ -94,11 +91,9 @@ function Home({backendUrl}){
                             }
                         }
                     }
-                    console.log(others, 'hahhahhah')
                     let lista1 = fposts.posts
                     lista1 = lista1.concat(others)
                     let newLista = []
-                    console.log("lo", lista1)
                     for (let post of lista1){
                         if (post.retweets.length==0){
                             let obj = {id:post.id, date:Date.parse(post.posteddate)}

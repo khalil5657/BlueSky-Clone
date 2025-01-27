@@ -34,7 +34,6 @@ function EditComment({backendUrl}){
             let theFile1 = file
             if (file){
                 if (!file.url){
-                    console.log('kokok',state.comment)
                     ///
                     await fetch(`${backendUrl}/commentimg/`+state.comment.img.id, {
                         method:"DELETE",
@@ -45,7 +44,6 @@ function EditComment({backendUrl}){
                     const theFile = file;
                     const formData = new FormData();
                     formData.append('image', theFile);
-                    console.log(formData)
                     const raw = await fetch(`${backendUrl}/editcommentfile/`+state.comment.id, {
                     method: 'POST',
                     body:formData
