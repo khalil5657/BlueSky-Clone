@@ -1250,7 +1250,7 @@ app.post("/editprofilefile/:userid/:thing", upload.single("image"), async(req, r
         }
         })
         // Clear temporary local download
-        fs.unlinkSync(path);
+        // fs.unlinkSync(path);
         res.send(image)
         }catch(error){
         console.log(error)
@@ -1291,7 +1291,7 @@ app.post("/editprofilefile/:userid/:thing", upload.single("image"), async(req, r
             }
         })
         // Clear temporary local download
-        fs.unlinkSync(path);
+        // fs.unlinkSync(path);
         res.send(image)
         }catch(error){
         console.log(error)
