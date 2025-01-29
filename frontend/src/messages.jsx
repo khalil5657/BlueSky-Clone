@@ -173,7 +173,7 @@ function Messages({backendUrl}){
                 <form onSubmit={send} encType="multipart/form-data">
                     <input type="text" value={text} onChange={(e)=>handleMessage(e.target.value)}/>
                     <input type="file" name="picture" onChange={(e)=>handleFile(e.target.files[0])}/>
-                    <button type="submit">send</button>
+                    <button type="submit"  className="sendmessagebtn">send</button>
                 </form>
                 {/* <input type="text" value={text} onChange={(e)=>handleMessage(e.target.value)}/>
                 <button type="submit" onClick={send}>Send</button> */}
