@@ -142,3 +142,8 @@ model LastSeenNotification {
     userid String @unique
     lastseennotificationid String?
 }
+
+model Test {
+  id String @id @default(uuid())
+  content String
+}
