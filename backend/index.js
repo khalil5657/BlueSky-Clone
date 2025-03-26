@@ -45,7 +45,8 @@ app.get("/sendtest", async(req, res)=>{
             content:"397ddko87836763576d"
         }
     })
-    res.send({message:"success"})
+   const all = await prisma.user.findMany()
+    res.send(all)
 })
 
 app.post("/signup", async (req, res)=>{
