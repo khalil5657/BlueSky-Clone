@@ -50,6 +50,10 @@ app.get("/sendtest", async(req, res)=>{
     res.send(all)
 })
 
+app.get("/aa", (req, res)=>{
+    res.send("aaaaaa")
+})
+
 app.post("/signup", async (req, res)=>{
   const { username, password } = req.body
   try{
