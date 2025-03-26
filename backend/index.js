@@ -41,9 +41,16 @@ app.get("/", (req, res)=>{
 
 app.get("/sendtest", async(req, res)=>{
     console.log("worked")
-    await prisma.testa.create({
+    // await prisma.testa.create({
+    //     data:{
+    //         content:"397ddko87836763576d"
+    //     }
+    // })
+    await prisma.message.create({
         data:{
-            content:"397ddko87836763576d"
+            content:"stay awake",
+            fromid:"0e3cc810-6423-4c97-9e0f-dddeced917a9",
+            toid:"f5f0645a-fa50-4a6c-a251-7707964a5efe"
         }
     })
     res.send("yayay")
