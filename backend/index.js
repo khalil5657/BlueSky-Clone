@@ -40,6 +40,7 @@ app.get("/", (req, res)=>{
 })
 
 app.get("/sendtest", async(req, res)=>{
+    console.log("worked")
     await prisma.test.create({
         data:{
             content:"397ddko87836763576d"
