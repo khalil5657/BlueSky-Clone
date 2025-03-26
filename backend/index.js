@@ -36,7 +36,16 @@ app.use(cors({
 }))
 
 app.get("/", (req, res)=>{
-    res.send("hello")
+    res.send("hello YOO")
+})
+
+app.get("/sendtest", async(req, res)=>{
+    await prisma.test.create({
+        data:{
+            content:"397ddko87836763576d"
+        }
+    })
+    res.send({message:"success"})
 })
 
 app.post("/signup", async (req, res)=>{
