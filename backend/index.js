@@ -41,17 +41,13 @@ app.get("/", (req, res)=>{
 
 app.get("/sendtest", async(req, res)=>{
     console.log("worked")
-    await prisma.test.create({
+    await prisma.testa.create({
         data:{
             content:"397ddko87836763576d"
         }
     })
    const all = await prisma.user.findMany()
     res.send(all)
-})
-
-app.get("/aa", (req, res)=>{
-    res.send("aaaaaa")
 })
 
 app.post("/signup", async (req, res)=>{
