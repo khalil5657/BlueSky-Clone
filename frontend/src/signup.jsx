@@ -86,20 +86,30 @@ function SignUp({backendUrl}){
     }
 
     return <>
-        <div>
-            <h1>Create Account</h1>
+        <div className="signup-container">
+            <h1>Create An Account</h1>
             <h4>We're so excited to have you join us! </h4> 
             <form method="post" onSubmit={signUp} encType="multipart/form-data">
-                <label htmlFor="">Username</label>
-                <input type="text" placeholder="Call me ..." value={username} onChange={(e)=>changeUsername(e.target.value)}/>
-                <label htmlFor="">Password</label>
-                <input type="password" value={password} onChange={(e)=>changePassword(e.target.value)}/>
-                <h1>Choose Profile Picture</h1>
-                <input type="file" name="picture" onChange={(e)=>handleFile(e.target.files[0])}/>
-                <h1>Choose A Banner</h1>
-                <input type="file" name="picture" onChange={(e)=>handleBannerFile(e.target.files[0])}/>
-                <h1>Create a Bio</h1>
-                <textarea cols={40} rows={7} name="" id="" value={bio} onChange={(e)=>handleBio(e.target.value)}></textarea>
+                <div className="first">
+                    <div className="cont">
+                        <div>
+                            <label htmlFor="">Username</label>
+                            <input type="text" placeholder="Call me ..." value={username} onChange={(e)=>changeUsername(e.target.value)}/>
+                        </div>
+                        <div>
+                            <label htmlFor="">Password</label>
+                            <input type="password" value={password} onChange={(e)=>changePassword(e.target.value)}/>
+                        </div>
+                    </div>
+                    <h3>Choose Profile Picture</h3>
+                    <input type="file" name="picture" onChange={(e)=>handleFile(e.target.files[0])}/>
+                </div>
+                <div className="second">
+                    <h3>Choose A Banner</h3>
+                    <input type="file" name="picture" onChange={(e)=>handleBannerFile(e.target.files[0])}/>
+                </div>
+                <h2>Create a Bio</h2>
+                <textarea   name="" id="" value={bio} onChange={(e)=>handleBio(e.target.value)}></textarea>
                 <br /><button type="submit">Create</button>
 
             </form> 

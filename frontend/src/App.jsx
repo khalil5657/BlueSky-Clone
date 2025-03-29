@@ -131,7 +131,7 @@ function RootLayout(){
   }
 
   if (loading){
-    return <h1>Loading...</h1>
+    return <h1 className='loading'>Loading...</h1>
   }
   return <div>
 
@@ -226,7 +226,7 @@ function RootLayout(){
             </div>
           </div>
         </div>
-}
+        }
         <Outlet context={[user, setUser, setSearchValue, setUsersWithNewMessages2, setUpdate, setNotifs, setPostsStatea]}/>
       </div>
 }

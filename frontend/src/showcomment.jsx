@@ -73,7 +73,7 @@ function ShowComment({backendUrl}){
                             {comment.img&&<img src={comment.img.url} alt="" />}
 
                         </div>
-                        <em>replies:{comment.replies.length}</em>
+                        <span>{comment.replies.length} replies</span>
                     </div>
                 </Link>
 
@@ -136,7 +136,7 @@ function ShowComment({backendUrl}){
 
 
     if (loading){
-        return <h1>Loading...</h1>
+        return <h1 className='loading'>Loading...</h1>
     }
     
     return <div className="post">
@@ -173,7 +173,7 @@ function ShowComment({backendUrl}){
             {repliedTo.map((comment)=>listIt(comment))}
             <div >
             {/* {comment.repliedto&&getRepliedTo(comment)} */}
-                <div style={{display:"grid", gridTemplateColumns:"50px 1fr"}} className="comment">
+                <div style={{display:"grid", gridTemplateColumns:"50px 1fr"}} className="comment selected">
                     {comment.writer.img?<img style={{height:"50px", width:"50px",  borderRadius:"25px"}} src={comment.writer.img.url} />:<img style={{height:"50px", width:"50px", borderRadius:"25px"}} src="https://res.cloudinary.com/dlwgxdiyp/image/upload/v1730058205/d76lwdwx5ojtcdk302eb.jpg" />}
                     <div className="comment-img">
                         <h2>{comment.writer.username}</h2>
@@ -189,15 +189,22 @@ function ShowComment({backendUrl}){
                 </div>
                 
                 {/* <button onClick={chnangeReplyState}>Add Reply</button> */}
-
-                <form onSubmit={submitComment} encType="multipart/form-data">
+                <form onSubmit={submitComment} encType="multipart/form-data" className="add-comments">
+                            <input value={reply} onChange={(e)=>changeReplyValue(e.target.value)}/><br></br>
+                            <label htmlFor="">add file</label>
+                            <input type="file" name="picture" onChange={(e)=>handleFile(e.target.files[0])}/>
+                            <br />
+                            <button type="submit">Reply</button>
+                        </form>
+                {/* <form onSubmit={submitComment} encType="multipart/form-data">
                     <input value={reply} onChange={(e)=>changeReplyValue(e.target.value)}/>
                     <label htmlFor="">add file</label>
                     <input type="file" name="picture" onChange={(e)=>handleFile(e.target.files[0])}/>
                     <button type="submit">Reply</button>
-                </form>
+                </form> */}
 
                 </div>
+                Replies:
                 {comment.replies.length>0&&comment.replies.map((comment)=>listIt(comment))}
                 
         </div>

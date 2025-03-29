@@ -47,15 +47,29 @@ function Login({backendUrl}){
     function changePassword(value){
         setPassword(value)
     }
-    return <div>
-                <h1>Login</h1>
-                <form action="" onSubmit={logIn}>
-                    <label htmlFor="">Username</label>
-                    <input type="text" value={username} onChange={(e)=>changeUsername(e.target.value)}/>
-                    <label htmlFor="">Password</label>
-                    <input type="password" value={password} onChange={(e)=>changePassword(e.target.value)}/>
-                    <button type="submit">Login</button>
-                </form>
+    return <div className="sign-background">
+                <div className="sign-form-container">
+                    <h1 className="sign-form-title">Login</h1>
+                    <form action="" onSubmit={logIn} className="login-form">
+                        {/* <label htmlFor="">Username</label> */}
+                        <input type="text" value={username} onChange={(e)=>changeUsername(e.target.value)} placeholder="Username"/>
+                        {/* <label htmlFor="">Password</label> */}
+                        <input type="password" value={password} onChange={(e)=>changePassword(e.target.value)} placeholder="Password"/>
+                        <button type="submit">Login</button>
+                    </form>
+                </div> 
             </div>
+
+            // <div className="sign-background">
+            //     <div className="sign-form-container">
+            //         <h1 className="sign-form-title">Login</h1>
+            //         <form action="" onSubmit={logIn} className="login-form">
+            //             <input type="text" value={username} onChange={(e)=>setUsername(e.target.value)} placeholder="Username"/>
+            //             <input type="text" value={password} onChange={(e)=>setPassword(e.target.value)} placeholder="Password"/>
+            //             <button type="submit">Login!!</button>
+            //         </form>
+            //     </div>
+                
+            // </div>
 }
 export default Login

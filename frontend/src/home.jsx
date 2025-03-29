@@ -623,7 +623,7 @@ function Home({backendUrl}){
         setPostsStatea(thestate)
     }
     if (loading){
-        return <h1>Loading...</h1>
+        return <h1 className='loading'>Loading...</h1>
     }
     let posts = []
     if (postsState=='discover'&&discoverPosts.length>0){
@@ -632,7 +632,7 @@ function Home({backendUrl}){
         posts = followingPosts
     }
     return <div>
-          <nav>
+            {user&&<nav>
             {/* <div className="home-nav"> */}
                 <div className="home-logo">
                     <svg fill="none" viewBox="0 0 64 57" width="28">
@@ -646,7 +646,7 @@ function Home({backendUrl}){
                 <button onClick={()=>handlePostsState("following")} className={postsState=="following"?"cur":undefined}>Following</button>
               </div>
             {/* </div> */}
-          </nav>
+            </nav>}
             <div className="content">
             {!user?<div>
                <h1>Dont have an Account?</h1>
@@ -656,7 +656,7 @@ function Home({backendUrl}){
             </div>:
             posts.length==0?<h3>No posts yet</h3>:<div>  {posts.map(post=>listIt(post))}{usersWhoLikedState&&<div className="likes">Likes:{usersWhoLiked.map(user=>listUser(user))}</div>}{usersWhoRetweetedState&&<div className="likes">Retweets:{usersWhoRetweeted.map(user=>listUser(user))}</div>}</div>
             }
-        </div>
+            </div>
         </div>
         
 }
