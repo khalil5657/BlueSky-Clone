@@ -4,6 +4,10 @@
   font-family: InterVariable, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";;
   box-sizing: border-box;
 }
+body{
+  margin: 0;
+  padding: 0;
+}
 .leftside{
   display: flex;
   flex-direction: column;
@@ -756,4 +760,201 @@ font-size: 15px;
     margin-left: 0;
     
   }
+}
+
+.signup-container{
+  width: 80%;
+  background: linear-gradient(135deg, blue, #2575fc);
+  margin-left: 50%;
+  margin-top: 50vh;
+  transform: translateX(-50%) translateY(-50%);  
+  color: white;
+  border-radius: 20px;
+  padding: 1%;
+  padding-left: 3%;
+  padding-right: 3%;
+}
+.first{
+  color: black;
+  background-color: white;
+  border-radius: 20px;
+  padding: 10px;
+}
+.first input{
+  padding: 5px;
+  border: 1px solid rgb(13, 112, 218);
+  border-radius: 5px;
+}
+.cont{
+  display: flex;
+  justify-content: space-between;
+}
+.cont label{
+  margin-right: 10px;
+}
+.cont > div{
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.cont input{
+  width: 80%;
+}
+.second{
+  background-color: white;
+  width: 25%;
+  color: black;
+  padding: 5px;
+  border-radius: 10px;
+  /* margin-left: 50%;
+  transform: translateX(-50%); */
+  margin-top: 15px;
+}
+.signup-container textarea{
+  width: 60%;
+  height: 70px;;
+}
+
+.createpost-container{
+  border: 2px solid gray;
+  border-radius: 10px;
+  background-color: white;
+  color: rgb(28, 28, 28);
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+.createpost-container .post-pics{
+  background-color: rgb(16, 131, 254);
+  padding: 5%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 10px;
+  color: white;
+}
+.createpost-container textarea{
+  height: 100px;
+  width: 70%;
+  margin-left: 7%;
+}
+.createpost-container label{
+  margin-left: 7%;
+  margin-bottom: 10px;
+  margin-top: 30px;
+}
+.createpost-container button{
+  background-color: rgb(16, 131, 254);
+  color: white;
+  font-weight: bold;
+  font-size: 1.4rem;
+  border: 1px solid rgb(28, 28, 28);
+  padding: 8px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+.createpost-container button:hover{
+  transform: scale(0.9);
+}
+.add-comments{
+  border: 1px solid rgb(16, 131, 254);
+  padding: 10px;
+  border-radius: 16px;
+}
+.add-comments button{
+  padding: 6px;
+  background-color: rgb(16, 131, 254);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  cursor: pointer;
+}
+.selected{
+  background-color: rgb(230, 230, 230);
+  border: 1px solid rgb(16, 131, 254);
+}
+
+.sign-background{
+  height: 100vh;
+  background: linear-gradient(135deg, blue, #2575fc);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sign-form-container{
+  width: 80%;
+  max-width: 500px;
+  background-color: white;
+  height: 60%;
+  padding: 16px;
+  border-radius: 14px;
+  box-shadow: 2px 2px 2px #374255;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 30% 70%;
+  transition: all 0.3s;
+}
+.sign-form-title{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(25, 25, 31);
+}
+.login-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.login-form input, .signup-form input{
+  background-color: rgb(234, 234, 234);
+  border: 1px solid rgb(234, 234, 234);
+  padding: 12px;
+  border-radius: 20px;
+}
+.login-form button, .signup-form button{
+  background-color: rgb(12, 89, 204);
+  color: white;
+  border: none;
+  padding: 12px;
+    border-radius: 20px;
+    cursor: pointer;
+  transition: all 0.3s;
+}
+.sign-form-container:hover{
+  transform: translateY(-23px);
+}
+
+
+.loading{
+  background-color: rgb(16, 131, 254);
+  color: white;
+  padding: 10px;
+  margin-left: 50%;
+  margin-top: 50vh;
+  transform: translateX(-50%) translateY(-50%);
+
+  width: max-content;
+
+}
+
+@media screen and (max-width:550px) {
+  .createpost-container{
+    height: 90%;
+    font-size: 2.8rem;
+    width: 150vw;
+  }
+  .createpost-container textarea{
+    border: 2px solid  black;
+    height: 25vh;
+  }
+  .createpost-container .post-pics{
+    height: 25vh;
+  }
+  .createpost-container .post-pics input{
+    padding: 10px;
+  }
+  
 }

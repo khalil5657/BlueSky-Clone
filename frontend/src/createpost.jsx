@@ -90,16 +90,19 @@ function CreatePost({backendUrl}){
         setText(value)
     }
     return <div className="content">
-            <form action="" onSubmit={post} encType="multipart/form-data">
-                <label htmlFor="">Write whats in your mind..</label>
-                <textarea name="" id="" placeholder="Whats Up" onChange={(e)=>changeText(e.target.value)} value={text}></textarea>
-                <input type="file" name="picture" onChange={(e)=>handleFile1(e.target.files[0])}/>
-                <input type="file" name="picture" onChange={(e)=>handleFile2(e.target.files[0])}/>
-                <input type="file" name="picture" onChange={(e)=>handleFile3(e.target.files[0])}/>
-                <input type="file" name="picture" onChange={(e)=>handleFile4(e.target.files[0])}/>
-
-                <button type="submit">Post</button>
-            </form>
+            <div className="createpost-container">
+                <form action="" onSubmit={post} encType="multipart/form-data">
+                    <label htmlFor="">Write whats in your mind..</label><br />
+                    <textarea name="" id="" placeholder="Whats Up" onChange={(e)=>changeText(e.target.value)} value={text}></textarea>
+                    <div className="post-pics">
+                        <input type="file" name="picture" onChange={(e)=>handleFile1(e.target.files[0])}/>
+                        <input type="file" name="picture" onChange={(e)=>handleFile2(e.target.files[0])}/>
+                        <input type="file" name="picture" onChange={(e)=>handleFile3(e.target.files[0])}/>
+                        <input type="file" name="picture" onChange={(e)=>handleFile4(e.target.files[0])}/>
+                    </div>
+                    <button type="submit">Post</button>
+                </form>
+            </div>
         </div>
 }
 
